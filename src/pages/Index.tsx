@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Check, Play, Smartphone, Tv, Monitor, Wifi, Shield, Clock, Star, ChevronDown, ChevronUp, MessageCircle, Send, Zap, Globe, Award, Users } from 'lucide-react';
 
@@ -14,28 +13,28 @@ const Index = () => {
     '1-connection': {
       name: "1 Connection",
       prices: {
-        '1-month': { price: '€12.99', period: '/month', savings: '' },
-        '3-months': { price: '€32.99', period: '/3 months', savings: 'Save 15%' },
-        '6-months': { price: '€59.99', period: '/6 months', savings: 'Save 23%' },
-        '12-months': { price: '€99.99', period: '/12 months', savings: 'Save 36%' }
+        'starter': { name: 'Starter', price: '€12.99', period: '/month', savings: '', duration: '1 Month' },
+        'pro': { name: 'Pro', price: '€32.99', period: '/3 months', savings: 'Save 15%', duration: '3 Months' },
+        'max': { name: 'Max', price: '€59.99', period: '/6 months', savings: 'Save 23%', duration: '6 Months' },
+        'legend': { name: 'Legend', price: '€99.99', period: '/12 months', savings: 'Save 36% – Best Value', duration: '12 Months' }
       }
     },
     '2-connections': {
       name: "2 Connections",
       prices: {
-        '1-month': { price: '€19.99', period: '/month', savings: '' },
-        '3-months': { price: '€49.99', period: '/3 months', savings: 'Save 17%' },
-        '6-months': { price: '€89.99', period: '/6 months', savings: 'Save 25%' },
-        '12-months': { price: '€149.99', period: '/12 months', savings: 'Save 38%' }
+        'starter': { name: 'Starter', price: '€19.99', period: '/month', savings: '', duration: '1 Month' },
+        'pro': { name: 'Pro', price: '€49.99', period: '/3 months', savings: 'Save 17%', duration: '3 Months' },
+        'max': { name: 'Max', price: '€89.99', period: '/6 months', savings: 'Save 25%', duration: '6 Months' },
+        'legend': { name: 'Legend', price: '€149.99', period: '/12 months', savings: 'Save 38% – Best Value', duration: '12 Months' }
       }
     },
     '3-connections': {
       name: "3 Connections",
       prices: {
-        '1-month': { price: '€24.99', period: '/month', savings: '' },
-        '3-months': { price: '€64.99', period: '/3 months', savings: 'Save 13%' },
-        '6-months': { price: '€119.99', period: '/6 months', savings: 'Save 20%' },
-        '12-months': { price: '€199.99', period: '/12 months', savings: 'Save 33%' }
+        'starter': { name: 'Starter', price: '€24.99', period: '/month', savings: '', duration: '1 Month' },
+        'pro': { name: 'Pro', price: '€64.99', period: '/3 months', savings: 'Save 13%', duration: '3 Months' },
+        'max': { name: 'Max', price: '€119.99', period: '/6 months', savings: 'Save 20%', duration: '6 Months' },
+        'legend': { name: 'Legend', price: '€199.99', period: '/12 months', savings: 'Save 33% – Best Value', duration: '12 Months' }
       }
     }
   };
@@ -189,7 +188,7 @@ const Index = () => {
               </p>
               <div className="d-flex flex-column flex-md-row gap-3 mb-4">
                 <a href="#pricing" className="btn btn-danger btn-lg px-5 py-3 fw-bold">
-                  Start Streaming Now
+                  Subscribe Now
                 </a>
                 <a href="https://wa.me/39644657615" className="btn btn-outline-light btn-lg px-5 py-3">
                   Free Trial
@@ -332,21 +331,24 @@ const Index = () => {
 
           {/* Pricing Cards */}
           <div className="row g-4 justify-content-center">
-            {Object.entries(pricingData[selectedPlan as keyof typeof pricingData].prices).map(([duration, details], index) => (
-              <div key={duration} className="col-lg-3 col-md-6">
-                <div className={`card h-100 pricing-card ${index === 3 ? 'border-danger popular-plan' : 'border-secondary'} bg-dark`}>
-                  {index === 3 && (
+            {Object.entries(pricingData[selectedPlan as keyof typeof pricingData].prices).map(([planKey, details], index) => (
+              <div key={planKey} className="col-lg-3 col-md-6">
+                <div className={`card h-100 pricing-card ${planKey === 'legend' ? 'border-success popular-plan position-relative' : 'border-secondary'} bg-dark`}>
+                  {planKey === 'legend' && (
                     <div className="position-absolute top-0 start-50 translate-middle">
-                      <span className="badge bg-danger px-3 py-2">Best Value</span>
+                      <span className="badge bg-success px-3 py-2 fs-6 fw-bold">Best Value</span>
                     </div>
                   )}
                   <div className="card-body p-4 text-center">
-                    <h4 className="card-title text-white mb-3">{duration.replace('-', ' ').toUpperCase()}</h4>
+                    <h4 className="card-title text-white mb-1">{details.name}</h4>
+                    <p className="text-light small mb-3">{details.duration}</p>
                     <div className="mb-3">
                       <span className="display-6 fw-bold text-danger">{details.price}</span>
                       <div className="text-light">{details.period}</div>
                       {details.savings && (
-                        <div className="badge bg-success mt-2">{details.savings}</div>
+                        <div className={`badge mt-2 ${planKey === 'legend' ? 'bg-success fs-6' : 'bg-warning text-dark'}`}>
+                          {details.savings}
+                        </div>
                       )}
                     </div>
                     <ul className="list-unstyled mb-4 text-start">
@@ -375,8 +377,8 @@ const Index = () => {
                         <span className="text-light">24/7 Premium Support</span>
                       </li>
                     </ul>
-                    <a href="https://wa.me/39644657615" className={`btn w-100 btn-lg fw-bold ${index === 3 ? 'btn-danger' : 'btn-outline-danger'}`}>
-                      Get Started
+                    <a href="https://wa.me/39644657615" className={`btn w-100 btn-lg fw-bold ${planKey === 'legend' ? 'btn-success' : 'btn-outline-danger'}`}>
+                      Subscribe Now
                     </a>
                   </div>
                 </div>
@@ -456,7 +458,7 @@ const Index = () => {
                   <MessageCircle className="text-success mb-3" size={48} />
                   <h4 className="text-white mb-3">WhatsApp Support</h4>
                   <p className="text-light mb-4">Get instant support and start your free trial</p>
-                  <a href="https://wa.me/39644657615" className="btn btn-success btn-lg fw-bold">
+                  <a href="https://wa.me/39644657615" target="_blank" rel="noopener noreferrer" className="btn btn-success btn-lg fw-bold">
                     Chat on WhatsApp
                   </a>
                   <p className="text-light mt-2 small">+39 644 657 615</p>
@@ -469,7 +471,7 @@ const Index = () => {
                   <Send className="text-info mb-3" size={48} />
                   <h4 className="text-white mb-3">Telegram Support</h4>
                   <p className="text-light mb-4">Connect with us for quick assistance</p>
-                  <a href="https://t.me/genuistv" className="btn btn-info btn-lg fw-bold">
+                  <a href="https://t.me/genuistv" target="_blank" rel="noopener noreferrer" className="btn btn-info btn-lg fw-bold">
                     Message on Telegram
                   </a>
                   <p className="text-light mt-2 small">@genuistv</p>
@@ -495,10 +497,10 @@ const Index = () => {
                 Experience entertainment like never before.
               </p>
               <div className="d-flex gap-3">
-                <a href="https://wa.me/39644657615" className="btn btn-success">
+                <a href="https://wa.me/39644657615" target="_blank" rel="noopener noreferrer" className="btn btn-success">
                   <MessageCircle size={20} />
                 </a>
-                <a href="https://t.me/genuistv" className="btn btn-info">
+                <a href="https://t.me/genuistv" target="_blank" rel="noopener noreferrer" className="btn btn-info">
                   <Send size={20} />
                 </a>
               </div>
