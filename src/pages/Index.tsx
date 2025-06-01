@@ -1,64 +1,44 @@
 
 import React, { useState } from 'react';
-import { Check, Play, Smartphone, Tv, Monitor, Wifi, Shield, Clock, Star, ChevronDown, ChevronUp, MessageCircle, Send } from 'lucide-react';
+import { Check, Play, Smartphone, Tv, Monitor, Wifi, Shield, Clock, Star, ChevronDown, ChevronUp, MessageCircle, Send, Zap, Globe, Award, Users } from 'lucide-react';
 
 const Index = () => {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const [selectedPlan, setSelectedPlan] = useState<string>('2-connections');
 
   const toggleFaq = (index: number) => {
     setActiveFaq(activeFaq === index ? null : index);
   };
 
-  const pricingPlans = [
-    {
+  const pricingData = {
+    '1-connection': {
       name: "1 Connection",
-      price: "€12.99",
-      period: "/month",
-      features: [
-        "1 Device Connection",
-        "30,000+ Live TV Channels",
-        "120,000+ Movies & Series",
-        "4K Ultra HD Quality",
-        "Anti-Freeze Technology",
-        "24/7 Premium Support",
-        "99.9% Uptime Guarantee",
-        "Instant Activation"
-      ],
-      popular: false
+      prices: {
+        '1-month': { price: '€12.99', period: '/month', savings: '' },
+        '3-months': { price: '€32.99', period: '/3 months', savings: 'Save 15%' },
+        '6-months': { price: '€59.99', period: '/6 months', savings: 'Save 23%' },
+        '12-months': { price: '€99.99', period: '/12 months', savings: 'Save 36%' }
+      }
     },
-    {
+    '2-connections': {
       name: "2 Connections",
-      price: "€19.99",
-      period: "/month",
-      features: [
-        "2 Device Connections",
-        "30,000+ Live TV Channels",
-        "120,000+ Movies & Series",
-        "4K Ultra HD Quality",
-        "Anti-Freeze Technology",
-        "24/7 Premium Support",
-        "99.9% Uptime Guarantee",
-        "Instant Activation"
-      ],
-      popular: true
+      prices: {
+        '1-month': { price: '€19.99', period: '/month', savings: '' },
+        '3-months': { price: '€49.99', period: '/3 months', savings: 'Save 17%' },
+        '6-months': { price: '€89.99', period: '/6 months', savings: 'Save 25%' },
+        '12-months': { price: '€149.99', period: '/12 months', savings: 'Save 38%' }
+      }
     },
-    {
+    '3-connections': {
       name: "3 Connections",
-      price: "€24.99",
-      period: "/month",
-      features: [
-        "3 Device Connections",
-        "30,000+ Live TV Channels",
-        "120,000+ Movies & Series",
-        "4K Ultra HD Quality",
-        "Anti-Freeze Technology",
-        "24/7 Premium Support",
-        "99.9% Uptime Guarantee",
-        "Instant Activation"
-      ],
-      popular: false
+      prices: {
+        '1-month': { price: '€24.99', period: '/month', savings: '' },
+        '3-months': { price: '€64.99', period: '/3 months', savings: 'Save 13%' },
+        '6-months': { price: '€119.99', period: '/6 months', savings: 'Save 20%' },
+        '12-months': { price: '€199.99', period: '/12 months', savings: 'Save 33%' }
+      }
     }
-  ];
+  };
 
   const features = [
     {
@@ -83,37 +63,75 @@ const Index = () => {
     }
   ];
 
+  const whyChooseFeatures = [
+    {
+      icon: <Zap className="h-6 w-6" />,
+      title: "Anti-Freeze Technology",
+      description: "Advanced streaming with zero buffering"
+    },
+    {
+      icon: <Shield className="h-6 w-6" />,
+      title: "Stable Servers",
+      description: "Enterprise-grade infrastructure"
+    },
+    {
+      icon: <Award className="h-6 w-6" />,
+      title: "99.9% Uptime",
+      description: "Guaranteed reliable service"
+    },
+    {
+      icon: <Globe className="h-6 w-6" />,
+      title: "Worldwide Access",
+      description: "Stream from anywhere in the world"
+    }
+  ];
+
   const devices = [
     { icon: <Smartphone className="h-12 w-12" />, name: "Android/iOS" },
     { icon: <Tv className="h-12 w-12" />, name: "Smart TV" },
     { icon: <Monitor className="h-12 w-12" />, name: "PC/Mac" },
-    { icon: <Wifi className="h-12 w-12" />, name: "Android Box" }
+    { icon: <Wifi className="h-12 w-12" />, name: "Android Box" },
+    { icon: <Play className="h-12 w-12" />, name: "Firestick" },
+    { icon: <Monitor className="h-12 w-12" />, name: "MAG Box" },
+    { icon: <Tv className="h-12 w-12" />, name: "Enigma2" },
+    { icon: <Monitor className="h-12 w-12" />, name: "Windows" }
+  ];
+
+  const contentProviders = [
+    { name: "UEFA Champions League", category: "Sports" },
+    { name: "La Liga", category: "Sports" },
+    { name: "Premier League", category: "Sports" },
+    { name: "Netflix", category: "Streaming" },
+    { name: "HBO Max", category: "Streaming" },
+    { name: "Amazon Prime", category: "Streaming" },
+    { name: "Disney+", category: "Streaming" },
+    { name: "ESPN", category: "Sports" },
+    { name: "Sky Sports", category: "Sports" },
+    { name: "BBC", category: "News" },
+    { name: "CNN", category: "News" },
+    { name: "Discovery", category: "Documentary" }
   ];
 
   const faqs = [
     {
-      question: "What is IPTV and how does it work?",
-      answer: "IPTV (Internet Protocol Television) delivers television content over the internet instead of traditional broadcast methods. You need a stable internet connection and compatible device to stream our content."
+      question: "What is IPTV and how does GeniusTV work?",
+      answer: "IPTV (Internet Protocol Television) delivers TV content over the internet. GeniusTV uses advanced streaming technology to provide 30,000+ channels and 120,000+ movies/shows with anti-freeze technology for smooth viewing on any device."
     },
     {
       question: "What devices are compatible with GeniusTV?",
-      answer: "GeniusTV works on Smart TVs, Android/iOS devices, computers, tablets, Android boxes, MAG boxes, and most streaming devices with internet connectivity."
+      answer: "GeniusTV works on all major devices: Smart TVs (Samsung, LG, Sony), Android/iOS phones/tablets, computers (Windows/Mac), Firestick, Android boxes, MAG boxes, and Enigma2 receivers."
     },
     {
       question: "Do you offer a free trial?",
-      answer: "Yes! We offer a 24-hour free trial so you can test our service quality and channel selection before committing to a subscription."
+      answer: "Yes! We offer a 24-hour free trial so you can test our service quality, channel selection, and streaming performance before subscribing."
     },
     {
-      question: "What internet speed do I need?",
-      answer: "We recommend minimum 10 Mbps for HD streaming and 25 Mbps for 4K content. Higher speeds ensure better streaming quality and multiple device usage."
+      question: "What internet speed do I need for GeniusTV?",
+      answer: "Minimum 10 Mbps for HD streaming, 25 Mbps for 4K content. Higher speeds ensure better quality and allow multiple simultaneous connections."
     },
     {
-      question: "Is there a contract or can I cancel anytime?",
-      answer: "No contracts required! You can cancel your subscription anytime. We believe in providing excellent service that keeps customers satisfied voluntarily."
-    },
-    {
-      question: "How quickly will my service be activated?",
-      answer: "Your GeniusTV service is activated instantly upon payment confirmation. You'll receive login credentials within minutes to start streaming immediately."
+      question: "How many devices can I use simultaneously?",
+      answer: "Depends on your plan: 1 Connection (1 device), 2 Connections (2 devices), 3 Connections (3 devices). Each connection allows one simultaneous stream."
     }
   ];
 
@@ -122,7 +140,7 @@ const Index = () => {
       {/* Navigation */}
       <nav className="navbar navbar-expand-lg navbar-dark bg-black fixed-top border-bottom border-danger">
         <div className="container">
-          <a className="navbar-brand fw-bold fs-3" href="#" style={{color: '#e50914'}}>
+          <a className="navbar-brand fw-bold fs-2" href="#" style={{color: '#e50914'}}>
             <span className="text-white">Genius</span><span className="text-danger">TV</span>
           </a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -134,7 +152,13 @@ const Index = () => {
                 <a className="nav-link" href="#features">Features</a>
               </li>
               <li className="nav-item">
+                <a className="nav-link" href="#content">Content</a>
+              </li>
+              <li className="nav-item">
                 <a className="nav-link" href="#pricing">Pricing</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#devices">Devices</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#faq">FAQ</a>
@@ -156,18 +180,18 @@ const Index = () => {
         <div className="container position-relative" style={{zIndex: 2, paddingTop: '100px'}}>
           <div className="row align-items-center">
             <div className="col-lg-6">
-              <h1 className="display-4 fw-bold mb-4 text-gradient">
+              <h1 className="display-3 fw-bold mb-4 text-gradient">
                 Premium IPTV Experience with <span className="text-danger">GeniusTV</span>
               </h1>
-              <p className="lead mb-4 text-light">
+              <p className="lead mb-4 text-light fs-5">
                 Stream 30,000+ live channels and 120,000+ movies in stunning 4K quality. 
                 Experience the future of entertainment with anti-freeze technology and 99.9% uptime guarantee.
               </p>
               <div className="d-flex flex-column flex-md-row gap-3 mb-4">
-                <a href="#pricing" className="btn btn-danger btn-lg px-4 py-3 fw-bold">
+                <a href="#pricing" className="btn btn-danger btn-lg px-5 py-3 fw-bold">
                   Start Streaming Now
                 </a>
-                <a href="https://wa.me/39644657615" className="btn btn-outline-light btn-lg px-4 py-3">
+                <a href="https://wa.me/39644657615" className="btn btn-outline-light btn-lg px-5 py-3">
                   Free Trial
                 </a>
               </div>
@@ -179,6 +203,10 @@ const Index = () => {
                 <div className="d-flex align-items-center gap-2">
                   <Shield className="text-success" size={20} />
                   <span>99.9% Uptime</span>
+                </div>
+                <div className="d-flex align-items-center gap-2">
+                  <Users className="text-info" size={20} />
+                  <span>50,000+ Users</span>
                 </div>
               </div>
             </div>
@@ -209,11 +237,33 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-5 bg-dark">
+      {/* Content Providers Section */}
+      <section id="content" className="py-5 bg-dark">
         <div className="container">
           <div className="text-center mb-5">
-            <h2 className="display-5 fw-bold mb-3">Why Choose <span className="text-danger">GeniusTV</span>?</h2>
+            <h2 className="display-5 fw-bold mb-3">Premium <span className="text-danger">Content</span></h2>
+            <p className="lead text-light">Access the world's best entertainment and sports</p>
+          </div>
+          <div className="row g-3">
+            {contentProviders.map((provider, index) => (
+              <div key={index} className="col-6 col-md-4 col-lg-3">
+                <div className="card bg-black border-secondary h-100 p-3 text-center">
+                  <div className="card-body d-flex flex-column justify-content-center">
+                    <h6 className="text-white mb-1">{provider.name}</h6>
+                    <small className="text-danger">{provider.category}</small>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-5 bg-black">
+        <div className="container">
+          <div className="text-center mb-5">
+            <h2 className="display-5 fw-bold mb-3">Premium <span className="text-danger">Features</span></h2>
             <p className="lead text-light">Experience the ultimate IPTV service with cutting-edge features</p>
           </div>
           <div className="row g-4">
@@ -232,6 +282,29 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Why Choose GeniusTV */}
+      <section className="py-5 bg-dark">
+        <div className="container">
+          <div className="text-center mb-5">
+            <h2 className="display-5 fw-bold mb-3">Why Choose <span className="text-danger">GeniusTV</span>?</h2>
+            <p className="lead text-light">Industry-leading technology and service quality</p>
+          </div>
+          <div className="row g-4">
+            {whyChooseFeatures.map((feature, index) => (
+              <div key={index} className="col-md-6 col-lg-3">
+                <div className="text-center">
+                  <div className="bg-danger rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '60px', height: '60px'}}>
+                    <span className="text-white">{feature.icon}</span>
+                  </div>
+                  <h5 className="text-white mb-2">{feature.title}</h5>
+                  <p className="text-light">{feature.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Pricing Section */}
       <section id="pricing" className="py-5 bg-black">
         <div className="container">
@@ -239,30 +312,70 @@ const Index = () => {
             <h2 className="display-5 fw-bold mb-3">Choose Your <span className="text-danger">Plan</span></h2>
             <p className="lead text-light">Flexible pricing for every household size</p>
           </div>
+          
+          {/* Plan Selector */}
+          <div className="row justify-content-center mb-4">
+            <div className="col-lg-8">
+              <div className="d-flex justify-content-center gap-2 mb-4">
+                {Object.keys(pricingData).map((planKey) => (
+                  <button
+                    key={planKey}
+                    onClick={() => setSelectedPlan(planKey)}
+                    className={`btn px-4 py-2 ${selectedPlan === planKey ? 'btn-danger' : 'btn-outline-danger'}`}
+                  >
+                    {pricingData[planKey as keyof typeof pricingData].name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Pricing Cards */}
           <div className="row g-4 justify-content-center">
-            {pricingPlans.map((plan, index) => (
-              <div key={index} className="col-lg-4 col-md-6">
-                <div className={`card h-100 pricing-card ${plan.popular ? 'border-danger popular-plan' : 'border-secondary'} bg-dark`}>
-                  {plan.popular && (
+            {Object.entries(pricingData[selectedPlan as keyof typeof pricingData].prices).map(([duration, details], index) => (
+              <div key={duration} className="col-lg-3 col-md-6">
+                <div className={`card h-100 pricing-card ${index === 3 ? 'border-danger popular-plan' : 'border-secondary'} bg-dark`}>
+                  {index === 3 && (
                     <div className="position-absolute top-0 start-50 translate-middle">
-                      <span className="badge bg-danger px-3 py-2">Most Popular</span>
+                      <span className="badge bg-danger px-3 py-2">Best Value</span>
                     </div>
                   )}
                   <div className="card-body p-4 text-center">
-                    <h3 className="card-title text-white mb-3">{plan.name}</h3>
-                    <div className="mb-4">
-                      <span className="display-4 fw-bold text-danger">{plan.price}</span>
-                      <span className="text-light">{plan.period}</span>
+                    <h4 className="card-title text-white mb-3">{duration.replace('-', ' ').toUpperCase()}</h4>
+                    <div className="mb-3">
+                      <span className="display-6 fw-bold text-danger">{details.price}</span>
+                      <div className="text-light">{details.period}</div>
+                      {details.savings && (
+                        <div className="badge bg-success mt-2">{details.savings}</div>
+                      )}
                     </div>
-                    <ul className="list-unstyled mb-4">
-                      {plan.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="mb-2 d-flex align-items-center">
-                          <Check className="text-success me-2 flex-shrink-0" size={16} />
-                          <span className="text-light">{feature}</span>
-                        </li>
-                      ))}
+                    <ul className="list-unstyled mb-4 text-start">
+                      <li className="mb-2 d-flex align-items-center">
+                        <Check className="text-success me-2 flex-shrink-0" size={16} />
+                        <span className="text-light">{pricingData[selectedPlan as keyof typeof pricingData].name}</span>
+                      </li>
+                      <li className="mb-2 d-flex align-items-center">
+                        <Check className="text-success me-2 flex-shrink-0" size={16} />
+                        <span className="text-light">30,000+ Live TV Channels</span>
+                      </li>
+                      <li className="mb-2 d-flex align-items-center">
+                        <Check className="text-success me-2 flex-shrink-0" size={16} />
+                        <span className="text-light">120,000+ Movies & Series</span>
+                      </li>
+                      <li className="mb-2 d-flex align-items-center">
+                        <Check className="text-success me-2 flex-shrink-0" size={16} />
+                        <span className="text-light">4K Ultra HD Quality</span>
+                      </li>
+                      <li className="mb-2 d-flex align-items-center">
+                        <Check className="text-success me-2 flex-shrink-0" size={16} />
+                        <span className="text-light">Anti-Freeze Technology</span>
+                      </li>
+                      <li className="mb-2 d-flex align-items-center">
+                        <Check className="text-success me-2 flex-shrink-0" size={16} />
+                        <span className="text-light">24/7 Premium Support</span>
+                      </li>
                     </ul>
-                    <a href="https://wa.me/39644657615" className={`btn w-100 btn-lg fw-bold ${plan.popular ? 'btn-danger' : 'btn-outline-danger'}`}>
+                    <a href="https://wa.me/39644657615" className={`btn w-100 btn-lg fw-bold ${index === 3 ? 'btn-danger' : 'btn-outline-danger'}`}>
                       Get Started
                     </a>
                   </div>
@@ -274,7 +387,7 @@ const Index = () => {
       </section>
 
       {/* Compatible Devices */}
-      <section className="py-5 bg-dark">
+      <section id="devices" className="py-5 bg-dark">
         <div className="container">
           <div className="text-center mb-5">
             <h2 className="display-5 fw-bold mb-3">Compatible <span className="text-danger">Devices</span></h2>
@@ -282,10 +395,10 @@ const Index = () => {
           </div>
           <div className="row g-4 text-center">
             {devices.map((device, index) => (
-              <div key={index} className="col-6 col-md-3">
+              <div key={index} className="col-6 col-md-4 col-lg-3">
                 <div className="device-card p-4 rounded-3 bg-black border border-secondary">
                   <div className="text-danger mb-3">{device.icon}</div>
-                  <h5 className="text-white">{device.name}</h5>
+                  <h6 className="text-white">{device.name}</h6>
                 </div>
               </div>
             ))}
@@ -298,7 +411,7 @@ const Index = () => {
         <div className="container">
           <div className="text-center mb-5">
             <h2 className="display-5 fw-bold mb-3">Frequently Asked <span className="text-danger">Questions</span></h2>
-            <p className="lead text-light">Get answers to common questions about our service</p>
+            <p className="lead text-light">Get answers to common questions about our IPTV service</p>
           </div>
           <div className="row justify-content-center">
             <div className="col-lg-8">
@@ -334,7 +447,7 @@ const Index = () => {
         <div className="container">
           <div className="text-center mb-5">
             <h2 className="display-5 fw-bold mb-3">Get in <span className="text-danger">Touch</span></h2>
-            <p className="lead text-light">24/7 support ready to help you</p>
+            <p className="lead text-light">24/7 support ready to help you start streaming</p>
           </div>
           <div className="row justify-content-center g-4">
             <div className="col-md-6">
@@ -342,7 +455,7 @@ const Index = () => {
                 <div className="card-body text-center p-4">
                   <MessageCircle className="text-success mb-3" size={48} />
                   <h4 className="text-white mb-3">WhatsApp Support</h4>
-                  <p className="text-light mb-4">Get instant support via WhatsApp</p>
+                  <p className="text-light mb-4">Get instant support and start your free trial</p>
                   <a href="https://wa.me/39644657615" className="btn btn-success btn-lg fw-bold">
                     Chat on WhatsApp
                   </a>
@@ -355,7 +468,7 @@ const Index = () => {
                 <div className="card-body text-center p-4">
                   <Send className="text-info mb-3" size={48} />
                   <h4 className="text-white mb-3">Telegram Support</h4>
-                  <p className="text-light mb-4">Connect with us on Telegram</p>
+                  <p className="text-light mb-4">Connect with us for quick assistance</p>
                   <a href="https://t.me/genuistv" className="btn btn-info btn-lg fw-bold">
                     Message on Telegram
                   </a>
@@ -368,18 +481,66 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black border-top border-danger py-4">
+      <footer className="bg-black border-top border-danger py-5">
         <div className="container">
-          <div className="row align-items-center">
-            <div className="col-md-6">
-              <div className="d-flex align-items-center mb-3 mb-md-0">
-                <span className="fw-bold fs-4">
+          <div className="row">
+            <div className="col-lg-4 mb-4">
+              <div className="d-flex align-items-center mb-3">
+                <span className="fw-bold fs-3">
                   <span className="text-white">Genius</span><span className="text-danger">TV</span>
                 </span>
               </div>
+              <p className="text-light mb-4">
+                Premium IPTV service with 30,000+ channels and 120,000+ movies. 
+                Experience entertainment like never before.
+              </p>
+              <div className="d-flex gap-3">
+                <a href="https://wa.me/39644657615" className="btn btn-success">
+                  <MessageCircle size={20} />
+                </a>
+                <a href="https://t.me/genuistv" className="btn btn-info">
+                  <Send size={20} />
+                </a>
+              </div>
+            </div>
+            <div className="col-lg-2 col-md-6 mb-4">
+              <h5 className="text-white mb-3">Service</h5>
+              <ul className="list-unstyled">
+                <li><a href="#features" className="text-light text-decoration-none">Features</a></li>
+                <li><a href="#pricing" className="text-light text-decoration-none">Pricing</a></li>
+                <li><a href="#devices" className="text-light text-decoration-none">Devices</a></li>
+                <li><a href="#content" className="text-light text-decoration-none">Content</a></li>
+              </ul>
+            </div>
+            <div className="col-lg-2 col-md-6 mb-4">
+              <h5 className="text-white mb-3">Support</h5>
+              <ul className="list-unstyled">
+                <li><a href="#faq" className="text-light text-decoration-none">FAQ</a></li>
+                <li><a href="#contact" className="text-light text-decoration-none">Contact</a></li>
+                <li><a href="https://wa.me/39644657615" className="text-light text-decoration-none">Free Trial</a></li>
+                <li><a href="#" className="text-light text-decoration-none">Setup Guide</a></li>
+              </ul>
+            </div>
+            <div className="col-lg-4 mb-4">
+              <h5 className="text-white mb-3">Contact Info</h5>
+              <p className="text-light mb-2">
+                <strong>WhatsApp:</strong> +39 644 657 615
+              </p>
+              <p className="text-light mb-2">
+                <strong>Telegram:</strong> @genuistv
+              </p>
+              <p className="text-light">
+                <strong>Support:</strong> 24/7 Available
+              </p>
+            </div>
+          </div>
+          <hr className="border-danger my-4" />
+          <div className="row align-items-center">
+            <div className="col-md-6">
+              <p className="text-light mb-0">&copy; 2024 GeniusTV. All rights reserved.</p>
             </div>
             <div className="col-md-6 text-md-end">
-              <p className="text-light mb-0">&copy; 2024 GeniusTV. All rights reserved.</p>
+              <p className="text-light mb-0">Premium IPTV Service | 99.9% Uptime Guarantee</p>
             </div>
           </div>
         </div>
