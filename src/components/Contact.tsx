@@ -20,7 +20,7 @@ const Contact = () => {
                 <a href="https://wa.me/+33644657615" target="_blank" rel="noopener noreferrer" className="btn btn-success btn-lg fw-bold">
                   Chat on WhatsApp
                 </a>
-                <p className="text-light mt-2 small">+39 644 657 615</p>
+                <p className="text-light mt-2 small">+33 64 46 57 615</p>
               </div>
             </div>
           </div>

@@ -47,7 +47,7 @@ const Footer = () => {
           <div className="col-lg-4 mb-4">
             <h5 className="text-white mb-3">Contact Info</h5>
             <p className="text-light mb-2">
-              <strong>WhatsApp:</strong> +39 644 657 615
+              <strong>WhatsApp:</strong> +33 64 46 57 615
             </p>
             <p className="text-light mb-2">
               <strong>Telegram:</strong> @genuistv
