@@ -211,23 +211,66 @@ const Index = () => {
             </div>
             <div className="col-lg-6 text-center">
               <div className="hero-image-container position-relative">
-                <div className="streaming-preview bg-dark rounded-4 p-4 shadow-lg border border-danger">
+                <div className="streaming-interface bg-dark rounded-4 p-4 shadow-lg border border-danger position-relative overflow-hidden">
                   <div className="d-flex align-items-center justify-content-between mb-3">
                     <div className="d-flex gap-2">
                       <div className="bg-danger rounded-circle" style={{width: '12px', height: '12px'}}></div>
                       <div className="bg-warning rounded-circle" style={{width: '12px', height: '12px'}}></div>
                       <div className="bg-success rounded-circle" style={{width: '12px', height: '12px'}}></div>
                     </div>
-                    <span className="text-danger fw-bold">LIVE</span>
+                    <span className="badge bg-danger px-3 py-1 fw-bold">LIVE 4K</span>
                   </div>
-                  <div className="ratio ratio-16x9 bg-secondary rounded-3 mb-3 position-relative">
-                    <div className="d-flex align-items-center justify-content-center">
-                      <Play className="text-white" size={48} />
+                  
+                  {/* Main Video Player */}
+                  <div className="ratio ratio-16x9 bg-gradient-to-br from-gray-800 to-gray-900 rounded-3 mb-3 position-relative overflow-hidden">
+                    <div className="position-absolute w-100 h-100 d-flex align-items-center justify-content-center" style={{
+                      background: 'linear-gradient(45deg, #1a1a2e, #16213e, #0f3460)',
+                    }}>
+                      <div className="text-center">
+                        <div className="position-relative mb-3">
+                          <Play className="text-white bg-danger rounded-circle p-3" size={64} style={{
+                            filter: 'drop-shadow(0 0 20px rgba(229, 9, 20, 0.5))'
+                          }} />
+                          <div className="position-absolute top-0 start-0 w-100 h-100 bg-danger rounded-circle animate-ping opacity-25"></div>
+                        </div>
+                        <div className="text-white small fw-bold">UEFA Champions League</div>
+                        <div className="text-light small">Manchester United vs Barcelona</div>
+                      </div>
                     </div>
                   </div>
-                  <div className="d-flex justify-content-between text-sm text-light">
-                    <span>Premium Sports HD</span>
-                    <span>4K Quality</span>
+                  
+                  {/* Channel Grid */}
+                  <div className="row g-2 mb-3">
+                    <div className="col-4">
+                      <div className="bg-secondary rounded-2 p-2 text-center position-relative">
+                        <Tv className="text-danger mb-1" size={20} />
+                        <div className="text-white small fw-bold">ESPN</div>
+                        <div className="badge bg-success position-absolute top-0 end-0" style={{fontSize: '8px'}}>HD</div>
+                      </div>
+                    </div>
+                    <div className="col-4">
+                      <div className="bg-secondary rounded-2 p-2 text-center position-relative">
+                        <Monitor className="text-warning mb-1" size={20} />
+                        <div className="text-white small fw-bold">Netflix</div>
+                        <div className="badge bg-danger position-absolute top-0 end-0" style={{fontSize: '8px'}}>4K</div>
+                      </div>
+                    </div>
+                    <div className="col-4">
+                      <div className="bg-secondary rounded-2 p-2 text-center position-relative">
+                        <Play className="text-info mb-1" size={20} />
+                        <div className="text-white small fw-bold">HBO Max</div>
+                        <div className="badge bg-success position-absolute top-0 end-0" style={{fontSize: '8px'}}>HD</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Stats Bar */}
+                  <div className="d-flex justify-content-between align-items-center text-sm">
+                    <div className="d-flex align-items-center gap-2">
+                      <div className="bg-success rounded-circle" style={{width: '8px', height: '8px'}}></div>
+                      <span className="text-success small">30,000+ Channels</span>
+                    </div>
+                    <div className="text-danger small fw-bold">120,000+ Movies</div>
                   </div>
                 </div>
               </div>
@@ -333,10 +376,12 @@ const Index = () => {
           <div className="row g-4 justify-content-center">
             {Object.entries(pricingData[selectedPlan as keyof typeof pricingData].prices).map(([planKey, details], index) => (
               <div key={planKey} className="col-lg-3 col-md-6">
-                <div className={`card h-100 pricing-card ${planKey === 'legend' ? 'border-success popular-plan position-relative' : 'border-secondary'} bg-dark`}>
+                <div className={`card h-100 pricing-card ${planKey === 'legend' ? 'border-success popular-plan position-relative' : 'border-secondary'} bg-dark`} style={{marginTop: planKey === 'legend' ? '30px' : '0'}}>
                   {planKey === 'legend' && (
-                    <div className="position-absolute top-0 start-50 translate-middle">
-                      <span className="badge bg-success px-3 py-2 fs-6 fw-bold">Best Value</span>
+                    <div className="position-absolute w-100 d-flex justify-content-center" style={{top: '-15px', zIndex: 10}}>
+                      <span className="badge bg-success px-4 py-2 fs-6 fw-bold rounded-pill shadow-lg">
+                        Best Value
+                      </span>
                     </div>
                   )}
                   <div className="card-body p-4 text-center">
