@@ -36,82 +36,97 @@ const Pricing = () => {
   };
 
   return (
-    <section id="pricing" className="py-5 bg-black">
-      <div className="container">
-        <div className="text-center mb-5">
-          <h2 className="display-5 fw-bold mb-3">Choose Your <span className="text-danger">Plan</span></h2>
-          <p className="lead text-light">Flexible pricing for every household size</p>
+    <section id="pricing" className="py-20 bg-black">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Choose Your <span className="text-red-600">Plan</span></h2>
+          <p className="text-xl text-gray-300">Flexible pricing for every household size</p>
         </div>
         
-        <div className="row justify-content-center mb-4">
-          <div className="col-lg-8">
-            <div className="d-flex justify-content-center gap-2 mb-4">
-              {Object.keys(pricingData).map((planKey) => (
-                <button
-                  key={planKey}
-                  onClick={() => setSelectedPlan(planKey)}
-                  className={`btn px-4 py-2 ${selectedPlan === planKey ? 'btn-danger' : 'btn-outline-danger'}`}
-                >
-                  {pricingData[planKey as keyof typeof pricingData].name}
-                </button>
-              ))}
-            </div>
+        <div className="flex justify-center mb-12">
+          <div className="flex gap-2 bg-gray-900 p-2 rounded-lg">
+            {Object.keys(pricingData).map((planKey) => (
+              <button
+                key={planKey}
+                onClick={() => setSelectedPlan(planKey)}
+                className={`px-6 py-3 rounded-md font-medium transition-all ${
+                  selectedPlan === planKey 
+                    ? 'bg-red-600 text-white' 
+                    : 'text-gray-300 hover:text-white hover:bg-gray-700'
+                }`}
+              >
+                {pricingData[planKey as keyof typeof pricingData].name}
+              </button>
+            ))}
           </div>
         </div>
 
-        <div className="row g-4 justify-content-center">
-          {Object.entries(pricingData[selectedPlan as keyof typeof pricingData].prices).map(([planKey, details], index) => (
-            <div key={planKey} className="col-lg-3 col-md-6">
-              <div className={`card h-100 pricing-card ${planKey === 'legend' ? 'border-success popular-plan position-relative' : 'border-secondary'} bg-dark`} style={{marginTop: planKey === 'legend' ? '30px' : '0'}}>
-                {planKey === 'legend' && (
-                  <div className="position-absolute w-100 d-flex justify-content-center" style={{top: '-15px', zIndex: 10}}>
-                    <span className="badge bg-success px-4 py-2 fs-6 fw-bold rounded-pill shadow-lg">
-                      Best Value
-                    </span>
-                  </div>
-                )}
-                <div className="card-body p-4 text-center">
-                  <h4 className="card-title text-white mb-1">{details.name}</h4>
-                  <p className="text-light small mb-3">{details.duration}</p>
-                  <div className="mb-3">
-                    <span className="display-6 fw-bold text-danger">{details.price}</span>
-                    <div className="text-light">{details.period}</div>
-                    {details.savings && (
-                      <div className={`badge mt-2 ${planKey === 'legend' ? 'bg-success fs-6' : 'bg-warning text-dark'}`}>
-                        {details.savings}
-                      </div>
-                    )}
-                  </div>
-                  <ul className="list-unstyled mb-4 text-start">
-                    <li className="mb-2 d-flex align-items-center">
-                      <Check className="text-success me-2 flex-shrink-0" size={16} />
-                      <span className="text-light">{pricingData[selectedPlan as keyof typeof pricingData].name}</span>
-                    </li>
-                    <li className="mb-2 d-flex align-items-center">
-                      <Check className="text-success me-2 flex-shrink-0" size={16} />
-                      <span className="text-light">30,000+ Live TV Channels</span>
-                    </li>
-                    <li className="mb-2 d-flex align-items-center">
-                      <Check className="text-success me-2 flex-shrink-0" size={16} />
-                      <span className="text-light">120,000+ Movies & Series</span>
-                    </li>
-                    <li className="mb-2 d-flex align-items-center">
-                      <Check className="text-success me-2 flex-shrink-0" size={16} />
-                      <span className="text-light">4K Ultra HD Quality</span>
-                    </li>
-                    <li className="mb-2 d-flex align-items-center">
-                      <Check className="text-success me-2 flex-shrink-0" size={16} />
-                      <span className="text-light">Anti-Freeze Technology</span>
-                    </li>
-                    <li className="mb-2 d-flex align-items-center">
-                      <Check className="text-success me-2 flex-shrink-0" size={16} />
-                      <span className="text-light">24/7 Premium Support</span>
-                    </li>
-                  </ul>
-                  <a href="https://wa.me/39644657615" className={`btn w-100 btn-lg fw-bold ${planKey === 'legend' ? 'btn-success' : 'btn-outline-danger'}`}>
-                    Subscribe Now
-                  </a>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          {Object.entries(pricingData[selectedPlan as keyof typeof pricingData].prices).map(([planKey, details]) => (
+            <div key={planKey} className="relative">
+              {planKey === 'legend' && (
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
+                  <span className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                    Best Value
+                  </span>
                 </div>
+              )}
+              <div className={`relative h-full rounded-xl p-8 text-center transition-all duration-300 ${
+                planKey === 'legend' 
+                  ? 'bg-gradient-to-b from-green-900/20 to-black border-2 border-green-500 shadow-2xl shadow-green-500/20 transform scale-105' 
+                  : 'bg-gradient-to-b from-gray-900 to-black border border-gray-700 hover:border-red-600 hover:shadow-xl hover:shadow-red-600/20'
+              }`}>
+                <h4 className="text-2xl font-bold text-white mb-2">{details.name}</h4>
+                <p className="text-gray-400 mb-6">{details.duration}</p>
+                <div className="mb-8">
+                  <span className="text-4xl font-bold text-red-600">{details.price}</span>
+                  <div className="text-gray-400 mt-1">{details.period}</div>
+                  {details.savings && (
+                    <div className={`inline-block mt-3 px-3 py-1 rounded-full text-sm font-medium ${
+                      planKey === 'legend' 
+                        ? 'bg-green-500 text-white' 
+                        : 'bg-yellow-500 text-black'
+                    }`}>
+                      {details.savings}
+                    </div>
+                  )}
+                </div>
+                <ul className="space-y-4 mb-8 text-left">
+                  <li className="flex items-center">
+                    <Check className="text-green-500 mr-3 flex-shrink-0" size={20} />
+                    <span className="text-gray-300">{pricingData[selectedPlan as keyof typeof pricingData].name}</span>
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="text-green-500 mr-3 flex-shrink-0" size={20} />
+                    <span className="text-gray-300">30,000+ Live TV Channels</span>
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="text-green-500 mr-3 flex-shrink-0" size={20} />
+                    <span className="text-gray-300">120,000+ Movies & Series</span>
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="text-green-500 mr-3 flex-shrink-0" size={20} />
+                    <span className="text-gray-300">4K Ultra HD Quality</span>
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="text-green-500 mr-3 flex-shrink-0" size={20} />
+                    <span className="text-gray-300">Anti-Freeze Technology</span>
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="text-green-500 mr-3 flex-shrink-0" size={20} />
+                    <span className="text-gray-300">24/7 Premium Support</span>
+                  </li>
+                </ul>
+                <a 
+                  href="https://wa.me/39644657615" 
+                  className={`block w-full py-4 rounded-lg font-bold text-lg transition-all ${
+                    planKey === 'legend'
+                      ? 'bg-green-500 hover:bg-green-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105'
+                      : 'border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white'
+                  }`}
+                >
+                  Subscribe Now
+                </a>
               </div>
             </div>
           ))}
