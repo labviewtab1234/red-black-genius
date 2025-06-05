@@ -23,7 +23,7 @@ const Hero = () => {
               <a href="#pricing" className="btn btn-danger btn-lg px-5 py-3 fw-bold">
                 Subscribe Now
               </a>
-              <a href="https://wa.me/39644657615" className="btn btn-outline-light btn-lg px-5 py-3">
+              <a href="https://wa.me/+33644657615" className="btn btn-outline-light btn-lg px-5 py-3">
                 Free Trial
               </a>
             </div>

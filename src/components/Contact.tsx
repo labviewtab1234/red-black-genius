@@ -17,7 +17,7 @@ const Contact = () => {
                 <MessageCircle className="text-success mb-3" size={48} />
                 <h4 className="text-white mb-3">WhatsApp Support</h4>
                 <p className="text-light mb-4">Get instant support and start your free trial</p>
-                <a href="https://wa.me/39644657615" target="_blank" rel="noopener noreferrer" className="btn btn-success btn-lg fw-bold">
+                <a href="https://wa.me/+33644657615" target="_blank" rel="noopener noreferrer" className="btn btn-success btn-lg fw-bold">
                   Chat on WhatsApp
                 </a>
                 <p className="text-light mt-2 small">+39 644 657 615</p>

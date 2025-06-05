@@ -118,7 +118,7 @@ const Pricing = () => {
                   </li>
                 </ul>
                 <a 
-                  href="https://wa.me/39644657615" 
+                  href="https://wa.me/+33644657615" 
                   className={`block w-full py-4 rounded-lg font-bold text-lg transition-all ${
                     planKey === 'legend'
                       ? 'bg-green-500 hover:bg-green-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105'

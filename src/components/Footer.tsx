@@ -18,7 +18,7 @@ const Footer = () => {
               Experience entertainment like never before.
             </p>
             <div className="d-flex gap-3">
-              <a href="https://wa.me/39644657615" target="_blank" rel="noopener noreferrer" className="btn btn-success">
+              <a href="https://wa.me/+33644657615" target="_blank" rel="noopener noreferrer" className="btn btn-success">
                 <MessageCircle size={20} />
               </a>
               <a href="https://t.me/genuistv" target="_blank" rel="noopener noreferrer" className="btn btn-info">
@@ -40,7 +40,7 @@ const Footer = () => {
             <ul className="list-unstyled">
               <li><a href="#faq" className="text-light text-decoration-none">FAQ</a></li>
               <li><a href="#contact" className="text-light text-decoration-none">Contact</a></li>
-              <li><a href="https://wa.me/39644657615" className="text-light text-decoration-none">Free Trial</a></li>
+              <li><a href="https://wa.me/+33644657615" className="text-light text-decoration-none">Free Trial</a></li>
               <li><a href="#" className="text-light text-decoration-none">Setup Guide</a></li>
             </ul>
           </div>
