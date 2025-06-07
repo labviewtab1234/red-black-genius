@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Plus } from 'lucide-react';
 
 const ContentProviders = () => {
   const contentProviders = [
@@ -35,6 +36,15 @@ const ContentProviders = () => {
               </div>
             </div>
           ))}
+          <div className="col-6 col-md-4 col-lg-3">
+            <div className="card bg-black border-danger h-100 p-3 text-center more-card">
+              <div className="card-body d-flex flex-column justify-content-center">
+                <Plus className="text-danger mx-auto mb-2" size={32} />
+                <h6 className="text-white mb-1">More</h6>
+                <small className="text-danger">30,000+ Channels</small>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
