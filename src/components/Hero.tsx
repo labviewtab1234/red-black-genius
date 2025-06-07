@@ -5,10 +5,24 @@ import { Play, Star, Shield, Users, Smartphone, Tv, Monitor } from 'lucide-react
 const Hero = () => {
   return (
     <section className="hero-section min-vh-100 d-flex align-items-center position-relative">
+      {/* Background Image */}
+      <div 
+        className="position-absolute w-100 h-100"
+        style={{
+          backgroundImage: 'url(https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          zIndex: 0
+        }}
+      ></div>
+      
+      {/* Dark Overlay */}
       <div className="hero-overlay position-absolute w-100 h-100" style={{
-        background: 'linear-gradient(45deg, rgba(0,0,0,0.8), rgba(229,9,20,0.3))',
+        background: 'linear-gradient(45deg, rgba(0,0,0,0.85), rgba(229,9,20,0.4), rgba(0,0,0,0.85))',
         zIndex: 1
       }}></div>
+      
       <div className="container position-relative" style={{zIndex: 2, paddingTop: '100px'}}>
         <div className="row align-items-center">
           <div className="col-lg-6">
